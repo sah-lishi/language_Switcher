@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useLanguage } from "./useLanguage"
+import { useLanguage } from "../hooks/useLanguage"
 
 export function Translator() {
     const [inputText, setInputText] = useState("")
@@ -11,6 +11,7 @@ export function Translator() {
 
     const handleTranslate = async() => {
         if(!inputText.trim()) {
+            setTranslatedText("")
             setError("Enter some text")
             return
         }
@@ -56,12 +57,12 @@ export function Translator() {
                 placeholder="Enter Text"
                 onChange={(e) => {setInputText(e.target.value)}}/>
                   
-            <textarea placeholder="translation" className="w-full h-28 p-2 border rounded-lg bg-gray-100 resize-none outline-none" readOnly value={translatedText}/>
+            <textarea placeholder="Translated text appear here" className="w-full h-28 p-2 border rounded-lg bg-gray-100 resize-none outline-none" readOnly value={translatedText}/>
 
             {error && <p className="text-red-400 text-sm">{error}</p>}
             
             <div className="flex justify-center">
-                <button className="self-start px-6 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-60" onClick={handleTranslate} disabled={loading}>{loading ? "Translating" : "Translate"}</button>           
+                <button className="self-start px-6 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-60" onClick={handleTranslate} disabled={loading}>{loading ? "Translating.." : "Translate"}</button>           
             </div>
         </div>
     )

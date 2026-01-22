@@ -11,9 +11,14 @@ export function LanguageProvider({children}) {
     const changeTo = (to) => {
         setToLanguage(to)
     }
+
+    const swapLanguage = () => {
+        setFromLanguage(toLanguage)
+        setToLanguage(fromLanguage)
+    }
     
     return (
-        <LanguageContext.Provider value={{fromLanguage, toLanguage, changeFrom, changeTo}}>
+        <LanguageContext.Provider value={{fromLanguage, toLanguage, changeFrom, changeTo, swapLanguage}}>
             {children}
         </LanguageContext.Provider>
     )
